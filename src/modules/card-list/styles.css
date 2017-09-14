@@ -1,0 +1,8 @@
+.card-list > * + * {
+    margin-top: 20px;
+}
+
+.card-list [data-react-toolbox="button"] {
+    text-align: center;
+    margin: 0 auto;
+}
