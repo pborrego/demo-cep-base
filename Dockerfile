@@ -19,9 +19,8 @@ WORKDIR $APP
 RUN npm install
 RUN npm run build
 
-RUN rm -fr node_modules
-RUN npm install --only=production
-
+RUN npm run lint
+RUN npm test
 
 USER root
 CMD ["npm", "run", "start:prod"]
