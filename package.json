@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "@coredev/cnn-react-material": "1.10.4",
+    "babel-preset-cnn-starter-app": "git+https://github.com/cnnlabs/babel-preset-cnn-starter-app.git",
     "babel-register": "6.24.1",
     "babel-resolver": "1.1.0",
-    "classnames": "^2.2.5",
+    "classnames": "2.2.5",
     "cnn-server": "git+https://github.com/cnnlabs/cnn-server.git#0.2.0",
     "cnn-starter-proxy": "git+https://github.com/cnnlabs/cnn-starter-proxy.git",
     "prop-types": "15.5.10",
@@ -25,7 +26,7 @@
     "build": "cnn-starter-app build",
     "create": "cnn-starter-app create",
     "start": "cnn-starter-app start",
-    "start:prod": "BABEL_ENV=server NODE_ENV=production node server.js",
+    "start:prod": "node server.js",
     "lint": "cnn-starter-app lint",
     "test": "cnn-starter-app test"
   }
