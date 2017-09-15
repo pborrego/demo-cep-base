@@ -23,8 +23,20 @@ class CardList extends Component {
 
         super(props);
 
-        this.state = {};
+        this.state = {
+            isAllShown: false
+        };
         this.untruncate = this.untruncate.bind(this);
+    }
+
+    componentWillReceiveProps({ featuredCardIndex, strategy }) {
+
+        if (featuredCardIndex !== this.props.featuredCardIndex || strategy !== this.props.strategy) {
+
+            this.setState({
+                isAllShown: false
+            });
+        }
     }
 
     untruncate() {
