@@ -19,20 +19,6 @@ const routes = [
         )
     },
     {
-        path: '/demo/:title/:strategy',
-        exact: false,
-        component: (props) => (
-            <AsyncRoute props={props} loadingPromise={System.import('./pages/demo')} />
-        )
-    },
-    {
-        path: '/demo/:title',
-        exact: false,
-        component: (props) => (
-            <AsyncRoute props={props} loadingPromise={System.import('./pages/demo')} />
-        )
-    },
-    {
         path: '/demo',
         exact: false,
         component: (props) => (
