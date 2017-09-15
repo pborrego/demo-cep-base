@@ -6,7 +6,7 @@ import styles from './styles.css';
 
 
 const Header = () => (
-    <AppBar flat leftIcon={<Link to="/" className={styles.brand} />} theme={styles} title="CNN React Material Demo" />
+    <AppBar flat leftIcon={<Link to="/" className={styles.brand} />} theme={styles} title="CNN Search Type Ahead Demo" />
 );
 
 export default Header;
