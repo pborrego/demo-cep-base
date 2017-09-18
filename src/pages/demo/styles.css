@@ -1,4 +1,23 @@
 .demo {
     padding-left: 10px;
     padding-right: 10px;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+/* Ungrid library */
+@media (min-width: 30em) {
+    .row {
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+    .col {
+        display: table-cell;
+    }
+}
+
+.demo .search-buttons {
+    width: 130px;
 }

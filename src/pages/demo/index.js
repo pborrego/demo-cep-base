@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { Autocomplete } from '@coredev/cnn-react-material/build/autocomplete';
 import { Button } from '@coredev/cnn-react-material/build/button';
+import classnames from 'classnames';
 
 import styles from './styles.css';
 
@@ -50,9 +51,13 @@ class Demo extends Component {
                 <p>
                     A demo for search type ahead!
                 </p>
-                <Autocomplete hint="Search" multiple={false} value={this.state.searchTerm} onQueryChange={this.updateSearchTerm} />
-                <Button onClick={this.clear}>Clear</Button>
-                <Button>Search</Button>
+                <div className={styles.row}>
+                    <Autocomplete className={styles.col} hint="Search" multiple={false} value={this.state.searchTerm} onQueryChange={this.updateSearchTerm} />
+                    <div className={classnames(styles.col, styles['search-buttons'])}>
+                        <Button onClick={this.clear}>Clear</Button>
+                        <Button icon="search" mini floating primary></Button>
+                    </div>
+                </div>
             </div>
         );
     }
