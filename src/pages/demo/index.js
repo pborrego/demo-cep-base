@@ -60,6 +60,10 @@ class Demo extends Component {
                     >
                         {(error, data) => (
                             <Autocomplete
+                                keepFocusOnChange
+                                showSelectedWhenNotInSource
+                                showSuggestionsWhenValueIsSet
+                                suggestionMatch="disabled"
                                 className={styles.col}
                                 hint="Search"
                                 multiple={false}
