@@ -10,6 +10,19 @@
     .demo__columns + .demo__columns {
         padding-left: 10px;
     }
+
+    .demo .search-buttons {
+        width: 200px;
+        text-align: left;
+    }
+}
+
+.demo .search-buttons {
+    text-align: right;
+}
+
+.search-buttons > * + * {
+    margin-left: 10px;
 }
 
 /* Ungrid library */
@@ -26,10 +39,3 @@
     }
 }
 
-.demo .search-buttons {
-    width: 150px;
-}
-
-.search-buttons > * + * {
-    margin-left: 10px;
-}

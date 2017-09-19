@@ -74,7 +74,7 @@ class Demo extends Component {
                     </FetchData>
                     <div className={classnames(styles.col, styles['search-buttons'], styles.demo__columns)}>
                         <Button onClick={this.clear}>Clear</Button>
-                        <Button icon="search" mini floating primary></Button>
+                        <Button primary>Search</Button>
                     </div>
                 </div>
             </div>
