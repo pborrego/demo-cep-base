@@ -2,6 +2,7 @@ import React, { Component }  from 'react';
 import { Autocomplete } from '@coredev/cnn-react-material/build/autocomplete';
 import { Button } from '@coredev/cnn-react-material/build/button';
 import classnames from 'classnames';
+import FetchData from '../../modules/fetch-data';
 
 import styles from './styles.css';
 
@@ -52,7 +53,22 @@ class Demo extends Component {
                     A demo for search type ahead!
                 </p>
                 <div className={styles.row}>
-                    <Autocomplete className={styles.col} hint="Search" multiple={false} value={this.state.searchTerm} onQueryChange={this.updateSearchTerm} />
+                    <FetchData
+                        basePath="https://yaonkfgej1.execute-api.us-east-1.amazonaws.com"
+                        uri={`/development/suggest?q=${this.state.searchTerm}`}
+                        searchTerm={this.state.searchTerm}
+                    >
+                        {(error, data) => (
+                            <Autocomplete
+                                className={styles.col}
+                                hint="Search"
+                                multiple={false}
+                                value={this.state.searchTerm}
+                                onQueryChange={this.updateSearchTerm}
+                                source={(error && false) || (data && data.suggestions) || false}
+                            />
+                        )}
+                    </FetchData>
                     <div className={classnames(styles.col, styles['search-buttons'])}>
                         <Button onClick={this.clear}>Clear</Button>
                         <Button icon="search" mini floating primary></Button>
