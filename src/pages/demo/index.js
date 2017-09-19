@@ -60,7 +60,6 @@ class Demo extends Component {
                     >
                         {(error, data) => (
                             <Autocomplete
-                                keepFocusOnChange
                                 showSelectedWhenNotInSource
                                 showSuggestionsWhenValueIsSet
                                 suggestionMatch="disabled"
