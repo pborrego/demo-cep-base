@@ -63,7 +63,7 @@ class Demo extends Component {
                                 showSelectedWhenNotInSource
                                 showSuggestionsWhenValueIsSet
                                 suggestionMatch="disabled"
-                                className={styles.col}
+                                className={classnames(styles.demo__columns, styles.col)}
                                 hint="Search"
                                 multiple={false}
                                 value={this.state.searchTerm}
@@ -72,7 +72,7 @@ class Demo extends Component {
                             />
                         )}
                     </FetchData>
-                    <div className={classnames(styles.col, styles['search-buttons'])}>
+                    <div className={classnames(styles.col, styles['search-buttons'], styles.demo__columns)}>
                         <Button onClick={this.clear}>Clear</Button>
                         <Button icon="search" mini floating primary></Button>
                     </div>
