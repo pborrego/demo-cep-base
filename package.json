@@ -3,23 +3,26 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@coredev/cnn-react-material": "1.10.4",
+    "@coredev/cnn-react-material": "^1.10.4",
+    "axios": "^0.16.2",
     "babel-preset-cnn-starter-app": "git+https://github.com/cnnlabs/babel-preset-cnn-starter-app.git",
-    "babel-register": "6.24.1",
-    "babel-resolver": "1.1.0",
-    "classnames": "2.2.5",
+    "babel-register": "^6.24.1",
+    "babel-resolver": "^1.1.0",
+    "classnames": "^2.2.5",
     "cnn-server": "git+https://github.com/cnnlabs/cnn-server.git#0.2.0",
     "cnn-starter-proxy": "git+https://github.com/cnnlabs/cnn-starter-proxy.git",
-    "prop-types": "15.5.10",
-    "react": "15.6.1",
-    "react-dom": "15.6.1",
-    "react-helmet": "5.0.3",
-    "react-hot-loader": "3.0.0-beta.6",
-    "react-router-dom": "4.1.1",
-    "react-transition-group": "1.2.0"
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-helmet": "^5.0.3",
+    "react-hot-loader": "^3.0.0-beta.6",
+    "react-router-dom": "^4.1.1",
+    "react-transition-group": "^1.2.0"
   },
   "devDependencies": {
-    "cnn-starter-app": "git+https://github.com/cnnlabs/cnn-starter-app.git"
+    "cnn-starter-app": "git+https://github.com/cnnlabs/cnn-starter-app.git",
+    "react-test-renderer": "^15.6.1",
+    "sinon": "^3.3.0"
   },
   "scripts": {
     "analyze": "cnn-starter-app analyze",
