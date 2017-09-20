@@ -1,8 +1,8 @@
 .demo {
+    margin: 0 auto;
+    max-width: 1180px;
     padding-left: 10px;
     padding-right: 10px;
-    max-width: 1180px;
-    margin: 0 auto;
 }
 
 .search-bar {
@@ -18,14 +18,12 @@
 }
 
 @media (min-width: 30em) {
-
     .search-bar {
-        display: flex;
         align-items: center;
+        display: flex;
     }
 
     .search-bar .bar {
         flex: 1 0 auto;
     }
-
 }
