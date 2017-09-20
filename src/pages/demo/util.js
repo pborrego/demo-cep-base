@@ -2,6 +2,11 @@ import axios from 'axios';
 
 
 
+function fetchApi(uri) {
+
+    return axios.get(uri).then(({ data }) => (data));
+}
+
 export function updateTerm(searchTerm = '') {
 
     return {
@@ -24,15 +29,7 @@ export function clearAll() {
     };
 }
 
-export function doFetchSuggestions(term) {
-
-    return this.fetchSuggestions(term)
-               .then(({ suggestions }) => suggestions)
-               .then(this.updatedSuggestions)
-               .then(this.updateState);
-}
-
 export function fetchSuggestions(searchTerm, uri) {
 
-    return searchTerm === '' ? Promise.resolve([]) : axios(uri).then(({ data }) => data);
+    return searchTerm === '' ? Promise.resolve([]) : fetchApi(uri).then(({ suggestions }) => (suggestions));
 }

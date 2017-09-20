@@ -52,7 +52,6 @@ class Demo extends Component {
     doFetchSuggestions(term) {
 
         return fetchSuggestions(term, `https://yaonkfgej1.execute-api.us-east-1.amazonaws.com/development/suggest?q=${term}`)
-                   .then(({ suggestions }) => suggestions)
                    .then(updateSuggestions)
                    .then(this.updateState);
     }
