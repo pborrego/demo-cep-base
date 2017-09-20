@@ -23,6 +23,17 @@ class Demo extends Component {
 
         this.updateSearchTerm = this.updateSearchTerm.bind(this);
         this.clear = this.clear.bind(this);
+        this.updateState = this.updateState.bind(this);
+    }
+
+    componentWillUnmount() {
+
+        this.updateState = () => {};
+    }
+
+    updateState(newState) {
+
+        this.setState(newState);
     }
 
     updatedTerm(term) {
@@ -37,15 +48,19 @@ class Demo extends Component {
 
     updateSearchTerm(term) {
 
-        this.setState(this.updatedTerm(term));
+        this.updateState(this.updatedTerm(term));
     }
 
     clear() {
 
-        this.setState(this.updatedTerm(''));
+        this.updateState(this.updatedTerm(''));
     }
 
     render() {
+
+        const {
+            searchTerm
+        } = this.state;
 
         return (
             <div className={styles.demo}>
@@ -53,25 +68,24 @@ class Demo extends Component {
                     A demo for search type ahead!
                 </p>
                 <div className={styles['search-bar']}>
-                        <FetchData
-                            basePath="https://yaonkfgej1.execute-api.us-east-1.amazonaws.com"
-                            uri={`/development/suggest?q=${this.state.searchTerm}`}
-                            searchTerm={this.state.searchTerm}
-                        >
-                            {(error, data) => (
-                                <Autocomplete
-                                    className={styles.bar}
-                                    allowCreate
-                                    showSuggestionsWhenValueIsSet
-                                    suggestionMatch="disabled"
-                                    hint="Search"
-                                    multiple={false}
-                                    value={this.state.searchTerm}
-                                    onQueryChange={this.updateSearchTerm}
-                                    source={(error && false) || (data && data.suggestions) || false}
-                                />
-                            )}
-                        </FetchData>
+                    <FetchData
+                        basePath="https://yaonkfgej1.execute-api.us-east-1.amazonaws.com"
+                        uri={`/development/suggest?q=${searchTerm}`}
+                    >
+                        {(error, data) => (
+                            <Autocomplete
+                                className={styles.bar}
+                                allowCreate
+                                showSuggestionsWhenValueIsSet
+                                suggestionMatch="disabled"
+                                hint="Search"
+                                multiple={false}
+                                value={searchTerm}
+                                onQueryChange={this.updateSearchTerm}
+                                source={(error && false) || (data && data.suggestions) || false}
+                            />
+                        )}
+                    </FetchData>
                     <Button onClick={this.clear} raised>Clear</Button>
                     <Button primary raised>Search</Button>
                 </div>
