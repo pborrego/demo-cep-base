@@ -5,37 +5,27 @@
     margin: 0 auto;
 }
 
-@media (min-width: 30em) {
-
-    .demo__columns + .demo__columns {
-        padding-left: 10px;
-    }
-
-    .demo .search-buttons {
-        width: 200px;
-        text-align: left;
-    }
-}
-
-.demo .search-buttons {
+.search-bar {
     text-align: right;
 }
 
-.search-buttons > * + * {
+.search-bar .bar {
+    text-align: left;
+}
+
+.search-bar > * + * {
     margin-left: 10px;
 }
 
-/* Ungrid library */
 @media (min-width: 30em) {
 
-    .row {
-        width: 100%;
-        display: table;
-        table-layout: fixed;
+    .search-bar {
+        display: flex;
+        align-items: center;
     }
 
-    .col {
-        display: table-cell;
+    .search-bar .bar {
+        flex: 1 0 auto;
     }
+
 }
-

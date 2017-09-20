@@ -1,7 +1,7 @@
 import React, { Component }  from 'react';
 import { Autocomplete } from '@coredev/cnn-react-material/build/autocomplete';
 import { Button } from '@coredev/cnn-react-material/build/button';
-import classnames from 'classnames';
+// import classnames from 'classnames';
 import FetchData from '../../modules/fetch-data';
 
 import styles from './styles.css';
@@ -52,30 +52,28 @@ class Demo extends Component {
                 <p>
                     A demo for search type ahead!
                 </p>
-                <div className={styles.row}>
-                    <FetchData
-                        basePath="https://yaonkfgej1.execute-api.us-east-1.amazonaws.com"
-                        uri={`/development/suggest?q=${this.state.searchTerm}`}
-                        searchTerm={this.state.searchTerm}
-                    >
-                        {(error, data) => (
-                            <Autocomplete
-                                showSelectedWhenNotInSource
-                                showSuggestionsWhenValueIsSet
-                                suggestionMatch="disabled"
-                                className={classnames(styles.demo__columns, styles.col)}
-                                hint="Search"
-                                multiple={false}
-                                value={this.state.searchTerm}
-                                onQueryChange={this.updateSearchTerm}
-                                source={(error && false) || (data && data.suggestions) || false}
-                            />
-                        )}
-                    </FetchData>
-                    <div className={classnames(styles.col, styles['search-buttons'], styles.demo__columns)}>
-                        <Button onClick={this.clear}>Clear</Button>
-                        <Button primary>Search</Button>
-                    </div>
+                <div className={styles['search-bar']}>
+                        <FetchData
+                            basePath="https://yaonkfgej1.execute-api.us-east-1.amazonaws.com"
+                            uri={`/development/suggest?q=${this.state.searchTerm}`}
+                            searchTerm={this.state.searchTerm}
+                        >
+                            {(error, data) => (
+                                <Autocomplete
+                                    className={styles.bar}
+                                    allowCreate
+                                    showSuggestionsWhenValueIsSet
+                                    suggestionMatch="disabled"
+                                    hint="Search"
+                                    multiple={false}
+                                    value={this.state.searchTerm}
+                                    onQueryChange={this.updateSearchTerm}
+                                    source={(error && false) || (data && data.suggestions) || false}
+                                />
+                            )}
+                        </FetchData>
+                    <Button onClick={this.clear} raised>Clear</Button>
+                    <Button primary raised>Search</Button>
                 </div>
             </div>
         );
