@@ -1,6 +1,8 @@
 {
     "extends": "cnn-starter-app",
     "globals": {
+        "beforeEach": true,
+        "afterEach": true,
         "describe": true,
         "it": true,
         "expect": true,
