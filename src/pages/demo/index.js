@@ -1,8 +1,9 @@
 import React, { Component }  from 'react';
 import { Autocomplete } from '@coredev/cnn-react-material/build/autocomplete';
 import { Button } from '@coredev/cnn-react-material/build/button';
+import axios from 'axios';
+import debounce from 'lodash.debounce';
 // import classnames from 'classnames';
-import FetchData from '../../modules/fetch-data';
 
 import styles from './styles.css';
 
@@ -14,7 +15,8 @@ class Demo extends Component {
     static defaultProps = {};
 
     state = {
-        searchTerm: ''
+        searchTerm: '',
+        suggestions: []
     };
 
     constructor(props) {
@@ -24,11 +26,13 @@ class Demo extends Component {
         this.updateSearchTerm = this.updateSearchTerm.bind(this);
         this.clear = this.clear.bind(this);
         this.updateState = this.updateState.bind(this);
+        this.doFetchSuggestions = debounce(this.doFetchSuggestions, 500, {leading: true, trailing: true});
     }
 
     componentWillUnmount() {
 
         this.updateState = () => {};
+        this.doFetchSuggestions.cancel();
     }
 
     updateState(newState) {
@@ -36,30 +40,65 @@ class Demo extends Component {
         this.setState(newState);
     }
 
-    updatedTerm(term) {
+    updatedTerm(searchTerm) {
 
         return function nextState() {
 
             return {
-                searchTerm: term
+                searchTerm
             };
         };
+    }
+
+    updatedSuggestions(suggestions) {
+
+        return function nextState() {
+
+            return {
+                suggestions
+            };
+        };
+    }
+
+    clearAll() {
+
+        return function nextState() {
+
+            return {
+                searchTerm: '',
+                suggestions: []
+            };
+        };
+    }
+
+    doFetchSuggestions(term) {
+
+        return this.fetchSuggestions(term)
+                   .then(this.updateSuggestions)
+                   .then(this.updateState);
     }
 
     updateSearchTerm(term) {
 
         this.updateState(this.updatedTerm(term));
+        this.doFetchSuggestions(term);
     }
 
     clear() {
 
-        this.updateState(this.updatedTerm(''));
+        this.updateState(this.clearAll());
+    }
+
+    fetchSuggestions(searchTerm) {
+
+        return searchTerm === '' ? Promise.resolve([]) : axios(`https://yaonkfgej1.execute-api.us-east-1.amazonaws.com/development/suggest?q=${searchTerm}`).then(({ data }) => data);
     }
 
     render() {
 
         const {
-            searchTerm
+            searchTerm,
+            suggestions
         } = this.state;
 
         return (
@@ -68,24 +107,17 @@ class Demo extends Component {
                     A demo for search type ahead!
                 </p>
                 <div className={styles['search-bar']}>
-                    <FetchData
-                        basePath="https://yaonkfgej1.execute-api.us-east-1.amazonaws.com"
-                        uri={`/development/suggest?q=${searchTerm}`}
-                    >
-                        {(error, data) => (
-                            <Autocomplete
-                                className={styles.bar}
-                                allowCreate
-                                showSuggestionsWhenValueIsSet
-                                suggestionMatch="disabled"
-                                hint="Search"
-                                multiple={false}
-                                value={searchTerm}
-                                onQueryChange={this.updateSearchTerm}
-                                source={(error && false) || (data && data.suggestions) || false}
-                            />
-                        )}
-                    </FetchData>
+                    <Autocomplete
+                        className={styles.bar}
+                        allowCreate
+                        showSuggestionsWhenValueIsSet
+                        suggestionMatch="disabled"
+                        hint="Search"
+                        multiple={false}
+                        value={searchTerm}
+                        onQueryChange={this.updateSearchTerm}
+                        source={suggestions}
+                    />
                     <Button onClick={this.clear} raised>Clear</Button>
                     <Button primary raised>Search</Button>
                 </div>
