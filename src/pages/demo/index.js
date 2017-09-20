@@ -1,9 +1,14 @@
 import React, { Component }  from 'react';
 import { Autocomplete } from '@coredev/cnn-react-material/build/autocomplete';
 import { Button } from '@coredev/cnn-react-material/build/button';
-import axios from 'axios';
 import debounce from 'lodash.debounce';
-// import classnames from 'classnames';
+
+import {
+    clearAll,
+    fetchSuggestions,
+    updateTerm,
+    updateSuggestions
+} from './util';
 
 import styles from './styles.css';
 
@@ -37,61 +42,30 @@ class Demo extends Component {
 
     updateState(newState) {
 
-        this.setState(newState);
-    }
-
-    updatedTerm(searchTerm) {
-
-        return function nextState() {
-
+        this.setState(function nextState() {
             return {
-                searchTerm
-            };
-        };
-    }
-
-    updatedSuggestions(suggestions) {
-
-        return function nextState() {
-
-            return {
-                suggestions
-            };
-        };
-    }
-
-    clearAll() {
-
-        return function nextState() {
-
-            return {
-                searchTerm: '',
-                suggestions: []
-            };
-        };
+                ...newState
+            }
+        });
     }
 
     doFetchSuggestions(term) {
 
-        return this.fetchSuggestions(term)
-                   .then(this.updateSuggestions)
+        return fetchSuggestions(term, `https://yaonkfgej1.execute-api.us-east-1.amazonaws.com/development/suggest?q=${term}`)
+                   .then(({ suggestions }) => suggestions)
+                   .then(updateSuggestions)
                    .then(this.updateState);
     }
 
-    updateSearchTerm(term) {
+    updateSearchTerm(searchTerm) {
 
-        this.updateState(this.updatedTerm(term));
-        this.doFetchSuggestions(term);
+        this.updateState(updateTerm(searchTerm));
+        this.doFetchSuggestions(searchTerm);
     }
 
     clear() {
 
-        this.updateState(this.clearAll());
-    }
-
-    fetchSuggestions(searchTerm) {
-
-        return searchTerm === '' ? Promise.resolve([]) : axios(`https://yaonkfgej1.execute-api.us-east-1.amazonaws.com/development/suggest?q=${searchTerm}`).then(({ data }) => data);
+        this.updateState(clearAll());
     }
 
     render() {
