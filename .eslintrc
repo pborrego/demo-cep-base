@@ -1,8 +1,0 @@
-{
-    "extends": "cnn-starter-app",
-    "globals": {
-        "describe": true,
-        "it": true,
-        "expect": true
-    }
-}
