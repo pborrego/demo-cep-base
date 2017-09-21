@@ -1,4 +1,4 @@
-FROM registry.services.dmtio.net/pborrego-demo:0.1.0-base.14
+FROM registry.services.dmtio.net/pborrego-demo:0.1.0-foundation.16
  
 # Build environment variables
 ENV APP_PATH=/home/app
