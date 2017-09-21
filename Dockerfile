@@ -1,11 +1,8 @@
-FROM node:7.8.0
-
+FROM registry.services.dmtio.net/pborrego-demo:0.1.0-base.14
+ 
 # Build environment variables
 ENV APP_PATH=/home/app
 ENV APP=$APP_PATH/demo-cep-base
-
-# Create a non-root user called app
-RUN useradd --user-group --create-home --shell /bin/false app
 
 # Copy the files needed to install the app
 RUN mkdir -p $APP
@@ -16,7 +13,6 @@ RUN chown -R app:app $APP_PATH/*
 USER app
 WORKDIR $APP
 
-RUN npm install
 RUN npm run lint
 RUN npm test
 RUN npm run build
