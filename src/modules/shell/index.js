@@ -16,9 +16,9 @@ function App() {
         <div>
             <Helmet
                 titleTemplate="%s - CNN.com"
-                defaultTitle="CNN React Starter Kit"
+                defaultTitle="CNN Tag Manager Prototype"
             >
-                <meta name="description" content="A simple starter kit for building React applications." />
+                <meta name="description" content="A simple functional prototype for the CNN Tag Manager UI." />
             </Helmet>
             <Header />
             <Switch>
