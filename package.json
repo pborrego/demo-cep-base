@@ -1,8 +1,9 @@
 {
   "name": "demo-cep-foundation",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
+    "@coredev/cnn-react-compound-components": "0.24.6",
     "@coredev/cnn-react-material": "1.10.4",
     "babel-preset-cnn-starter-app": "git+https://github.com/cnnlabs/babel-preset-cnn-starter-app.git",
     "babel-register": "6.24.1",
@@ -11,6 +12,7 @@
     "cnn-server": "git+https://github.com/cnnlabs/cnn-server.git#0.2.0",
     "cnn-starter-proxy": "git+https://github.com/cnnlabs/cnn-starter-proxy.git",
     "prop-types": "15.5.10",
+    "ramda": "0.24.1",
     "react": "15.6.1",
     "react-dom": "15.6.1",
     "react-helmet": "5.0.3",
