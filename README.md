@@ -1,8 +1,13 @@
-# demo-cep-base
-Demo of react toolbox and cnn starter to form the basis for CEP projects.
+# Prototype Tag Manager
+
+A prototype for the tag manager UI. This will manage the tags generated
+by Magnet for article and vidoes. Allowing the user to choose which tags
+are seen per resource. Allows for transcript modification as well for
+videos.
 
 ## Install
 ```
+git checkout foundation
 npm install
 ```
 
@@ -10,6 +15,7 @@ npm install
 
 ### Locally
 ```
+git checkout prototype-tag-manager
 npm start
 ```
 
